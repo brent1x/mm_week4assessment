@@ -7,10 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "ImportedDogOwner.h"
+#import "DogOwner.h"
+#import "AppDelegate.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property NSManagedObjectContext *moc;
+@property (nonatomic) NSArray *owners;
 
 @property UIAlertView *addAlert;
 @property UIAlertView *colorAlert;
@@ -23,26 +28,58 @@
 {
     [super viewDidLoad];
     self.title = @"Dog Owners";
+
+    self.owners = [NSArray new];
+
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    self.moc = delegate.managedObjectContext;
+
+    [self loadOwners];
+    [self loadOwnersIfEmpty];
+
+}
+
+- (void)loadOwnersIfEmpty {
+    NSLog(@"%lu", (unsigned long)self.owners.count);
+    if (self.owners.count == 0) {
+        [ImportedDogOwner retrieveOwnersWithCompletion:^(NSArray *dogOwners) {
+            for (ImportedDogOwner *importedDogOwner in dogOwners) {
+                DogOwner *dogOwner = [NSEntityDescription insertNewObjectForEntityForName:@"DogOwner" inManagedObjectContext:self.moc];
+                dogOwner.name = importedDogOwner.name;
+            }
+            [self.moc save:nil];
+            [self loadOwners];
+            [self.myTableView reloadData];
+        }];
+    }
+}
+
+- (void)loadOwners {
+    NSFetchRequest *rq = [[NSFetchRequest alloc] initWithEntityName:@"DogOwner"];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+    rq.sortDescriptors = [NSArray arrayWithObject:sort];
+    self.owners = [self.moc executeFetchRequest:rq error:nil];
+    [self.myTableView reloadData];
 }
 
 #pragma mark - UITableView Delegate Methods
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //TODO: UPDATE THIS ACCORDINGLY
-    return 1;
+    return self.owners.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"myCell"];
-    //TODO: UPDATE THIS ACCORDINGLY
+    ImportedDogOwner *importedDogOwner = [self.owners objectAtIndex:indexPath.row];
+    cell.textLabel.text = importedDogOwner.name;
     return cell;
 }
 
 #pragma mark - UIAlertView Methods
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     //TODO: SAVE USER'S DEFAULT COLOR PREFERENCE USING THE CONDITIONAL BELOW
 
@@ -78,3 +115,10 @@
 }
 
 @end
+
+
+
+
+
+
+
