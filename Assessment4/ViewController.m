@@ -30,6 +30,10 @@
     [super viewDidLoad];
     self.title = @"Dog Owners";
 
+    NSData *theData = [[NSUserDefaults standardUserDefaults] objectForKey:@"myColor"];
+    UIColor *theColor = (UIColor *)[NSKeyedUnarchiver unarchiveObjectWithData:theData];
+    self.navigationController.navigationBar.tintColor = theColor;
+
     self.owners = [NSArray new];
 
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -95,18 +99,26 @@
     if (buttonIndex == 0)
     {
         self.navigationController.navigationBar.tintColor = [UIColor purpleColor];
+        NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[UIColor purpleColor]];
+        [[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"myColor"];
     }
     else if (buttonIndex == 1)
     {
         self.navigationController.navigationBar.tintColor = [UIColor blueColor];
+        NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[UIColor blueColor]];
+        [[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"myColor"];
     }
     else if (buttonIndex == 2)
     {
         self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+        NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[UIColor orangeColor]];
+        [[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"myColor"];
     }
     else if (buttonIndex == 3)
     {
         self.navigationController.navigationBar.tintColor = [UIColor greenColor];
+        NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[UIColor greenColor]];
+        [[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"myColor"];
     }
 
 }
