@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "Dog.h"
 
 @interface ViewController : UIViewController
 
 @property NSManagedObjectContext *managedObjectContext;
 
-
+@property Dog *dog;
 
 @end

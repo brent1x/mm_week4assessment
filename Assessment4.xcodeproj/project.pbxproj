@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		841729801B2208AD005CE69A /* ImportedDogOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8417297F1B2208AD005CE69A /* ImportedDogOwner.m */; };
 		841729831B2210D2005CE69A /* DogOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 841729821B2210D2005CE69A /* DogOwner.m */; };
+		841729861B222746005CE69A /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 841729851B222746005CE69A /* Dog.m */; };
 		93CD77B11999604D00D27E0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93CD77B01999604D00D27E0A /* Foundation.framework */; };
 		93CD77B31999604D00D27E0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93CD77B21999604D00D27E0A /* CoreGraphics.framework */; };
 		93CD77B51999604D00D27E0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93CD77B41999604D00D27E0A /* UIKit.framework */; };
@@ -43,6 +44,8 @@
 		8417297F1B2208AD005CE69A /* ImportedDogOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportedDogOwner.m; path = ../ImportedDogOwner.m; sourceTree = "<group>"; };
 		841729811B2210D2005CE69A /* DogOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DogOwner.h; sourceTree = "<group>"; };
 		841729821B2210D2005CE69A /* DogOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DogOwner.m; sourceTree = "<group>"; };
+		841729841B222746005CE69A /* Dog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
+		841729851B222746005CE69A /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
 		93CD77AD1999604D00D27E0A /* Assessment4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assessment4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CD77B01999604D00D27E0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		93CD77B21999604D00D27E0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,8 @@
 			children = (
 				8417297E1B2208AD005CE69A /* ImportedDogOwner.h */,
 				8417297F1B2208AD005CE69A /* ImportedDogOwner.m */,
+				841729841B222746005CE69A /* Dog.h */,
+				841729851B222746005CE69A /* Dog.m */,
 				841729811B2210D2005CE69A /* DogOwner.h */,
 				841729821B2210D2005CE69A /* DogOwner.m */,
 				93CD77BF1999604D00D27E0A /* AppDelegate.h */,
@@ -272,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841729861B222746005CE69A /* Dog.m in Sources */,
 				93CD77C71999604D00D27E0A /* ViewController.m in Sources */,
 				841729801B2208AD005CE69A /* ImportedDogOwner.m in Sources */,
 				841729831B2210D2005CE69A /* DogOwner.m in Sources */,

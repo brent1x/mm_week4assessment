@@ -10,6 +10,7 @@
 #import "ImportedDogOwner.h"
 #import "DogOwner.h"
 #import "AppDelegate.h"
+#import "DogsViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
@@ -75,6 +76,14 @@
     ImportedDogOwner *importedDogOwner = [self.owners objectAtIndex:indexPath.row];
     cell.textLabel.text = importedDogOwner.name;
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UITableViewCell *cell = sender;
+    NSIndexPath *indexPath = [self.myTableView indexPathForCell:cell];
+    DogOwner *owner = [self.owners objectAtIndex:indexPath.row];
+    DogsViewController *destVC = segue.destinationViewController;
+    destVC.owner = owner;
 }
 
 #pragma mark - UIAlertView Methods
